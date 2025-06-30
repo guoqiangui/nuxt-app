@@ -1,0 +1,4 @@
+publicHoistPattern:
+  - "@css-render/vue3-ssr"
+  - "vueuc"
+  - "naive-ui"

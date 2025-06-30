@@ -8,4 +8,13 @@ export default defineNuxtConfig({
     "@bg-dev/nuxt-naiveui",
     "@pinia/nuxt",
   ],
+  tailwindcss: { config: { darkMode: "selector" } },
+  app: {
+    head: {
+      meta: [
+        { name: "description", content: "前端技术" },
+        { name: "keywords", content: "frontend,js,vue,nuxt" },
+      ],
+    },
+  },
 });

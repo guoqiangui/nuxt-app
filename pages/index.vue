@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dark:bg-slate-400">
     index page
     <NuxtLink to="/detail/1" class="text-blue-500">Detail</NuxtLink>
     <n-button type="primary"> Primary </n-button>
@@ -21,6 +21,10 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  title: "文章列表",
+});
+
 const page = ref(1);
 
 function prev() {

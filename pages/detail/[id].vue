@@ -50,4 +50,8 @@ watchEffect(() => {
     showError(error.value);
   }
 });
+
+useHead(() => ({
+  title: data.value?.title,
+}));
 </script>
