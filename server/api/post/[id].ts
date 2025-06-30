@@ -5,9 +5,20 @@ import fs from "node:fs/promises";
 import matter from "gray-matter";
 
 export default defineEventHandler(async (e) => {
+  console.log("请求了");
   const id = getRouterParam(e, "id");
 
   const fullPath = path.join(process.cwd(), "contents", `${id}.md`);
+
+  try {
+    await fs.access(fullPath);
+  } catch (err) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: "文章不存在",
+    });
+  }
+
   const fileContent = await fs.readFile(fullPath, { encoding: "utf8" });
 
   const matterInfo = matter(fileContent);

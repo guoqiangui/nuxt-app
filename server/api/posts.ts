@@ -30,5 +30,16 @@ export default defineEventHandler(async (e) => {
     });
   }
 
-  return posts;
+  posts.sort((a, b) => {
+    return a.date > b.date ? -1 : 1;
+  });
+
+  const query = getQuery(e);
+  const page = Number(query.page ?? 1);
+  const size = Number(query.size ?? 10);
+
+  const startIndex = (page - 1) * size;
+  const endIndex = startIndex + size;
+
+  return posts.slice(startIndex, endIndex);
 });
