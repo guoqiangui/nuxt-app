@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const config = useAppConfig()
+</script>
+
 <template>
   <div>
     <h1 class="flex justify-between items-center border border-b-black p-2.5">
@@ -10,7 +14,3 @@
     <slot />
   </div>
 </template>
-
-<script setup lang="ts">
-const config = useAppConfig();
-</script>

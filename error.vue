@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { NuxtError } from "#app";
+import type { NuxtError } from '#app'
 
-const props = defineProps({
+defineProps({
   error: Object as () => NuxtError,
-});
+})
 
-const handleError = () => clearError({ redirect: "/" });
+const handleError = () => clearError({ redirect: '/' })
 </script>
 
 <template>
@@ -15,7 +15,9 @@ const handleError = () => clearError({ redirect: "/" });
     </h1>
     <n-empty description="你什么也找不到">
       <template #extra>
-        <n-button size="small" @click="handleError"> 看看别的 </n-button>
+        <n-button size="small" @click="handleError">
+          看看别的
+        </n-button>
       </template>
     </n-empty>
   </div>
