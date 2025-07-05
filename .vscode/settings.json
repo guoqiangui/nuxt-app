@@ -47,5 +47,7 @@
     "scss",
     "pcss",
     "postcss"
-  ]
+  ],
+
+  "typescript.preferences.importModuleSpecifier": "non-relative"
 }
