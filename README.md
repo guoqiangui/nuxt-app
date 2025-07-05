@@ -1,6 +1,6 @@
 # Nuxt Minimal Starter
 
-阅读《[Nuxt 3.0 全栈开发](https://juejin.cn/video/7202149403342143520/section)》小册所写代码
+阅读《[Nuxt 3.0 全栈开发](https://juejin.cn/video/7202149403342143520)》小册所写代码
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
