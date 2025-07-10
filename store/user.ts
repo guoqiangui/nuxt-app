@@ -1,5 +1,12 @@
-export const useUser = defineStore('user', () => {
-  const isLogin = ref(false)
+import type { User } from '~/server/database/generated/prisma/client'
 
-  return { isLogin }
+export const useUser = defineStore('user', () => {
+  const userInfo = ref<User | null>(null)
+
+  function logout() {
+    userInfo.value = null
+    localStorage.removeItem('token')
+  }
+
+  return { userInfo, logout }
 })

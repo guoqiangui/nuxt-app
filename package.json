@@ -15,8 +15,11 @@
   "dependencies": {
     "@pinia/nuxt": "^0.11.1",
     "@prisma/client": "6.11.1",
+    "@unocss/reset": "^66.3.3",
+    "bcrypt": "^6.0.0",
     "better-sqlite3": "^12.1.1",
     "gray-matter": "^4.0.3",
+    "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.17.5",
     "pinia": "^3.0.3",
     "remark": "^15.0.1",
@@ -27,6 +30,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.16.1",
     "@bg-dev/nuxt-naiveui": "2.0.0-rc.5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.10",
     "@unocss/nuxt": "^66.3.2",
     "eslint": "^9.29.0",
     "prisma": "^6.11.1",

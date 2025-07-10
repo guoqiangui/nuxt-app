@@ -11,4 +11,10 @@ export default defineNuxtConfig({
       ],
     },
   },
+  vite: {
+    // server: { proxy: { '/api': 'http://127.0.0.1:4523/m1/6700463-6410204-default' } },
+  },
+  runtimeConfig: {
+    JWT_SECRET: 'e_sPI~PwUn+soYI(2QrLI@0HI+9OHUKf',
+  },
 })

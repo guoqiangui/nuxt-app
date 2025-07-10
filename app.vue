@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import '@unocss/reset/tailwind-compat.css'
+
 const config = useAppConfig()
 
 useHead(() => ({
@@ -10,9 +12,9 @@ useHead(() => ({
 </script>
 
 <template>
-  <NuxtLayout>
-    <n-message-provider>
+  <n-message-provider>
+    <NuxtLayout>
       <NuxtPage />
-    </n-message-provider>
-  </NuxtLayout>
+    </NuxtLayout>
+  </n-message-provider>
 </template>

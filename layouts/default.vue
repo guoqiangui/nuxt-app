@@ -1,16 +1,14 @@
 <script setup lang="ts">
-const config = useAppConfig()
+import Footer from '~/components/Footer.vue'
+import Header from '~/components/Header.vue'
 </script>
 
 <template>
-  <div>
-    <h1 class="flex justify-between items-center border border-b-black p-2.5">
-      <span>导航栏</span>
-      <div class="flex items-center">
-        <div class="w-[50px] h-[50px] rounded-full bg-amber-700 mr-2" />
-        启用暗黑模式：<n-switch v-model:value="config.theme.dark" />
-      </div>
-    </h1>
-    <slot />
+  <div class="bg-gray-100 min-w-[1024px] min-h-screen flex flex-col">
+    <Header />
+    <main class="container mx-auto">
+      <slot />
+    </main>
+    <Footer />
   </div>
 </template>
