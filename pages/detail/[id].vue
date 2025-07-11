@@ -6,7 +6,7 @@ const store = useUser()
 const router = useRouter()
 
 const { data, error, pending } = useFetch(`/api/post/${route.params.id}`, {
-  headers: { token: store.isLogin ? '123' : '' },
+  headers: { token: store.userInfo ? '123' : '' },
   onResponseError: ({ response }) => {
     if (response.status === 401) {
       router.push(`/login?callback=${route.fullPath}`)
@@ -29,7 +29,7 @@ function send() {
 }
 
 useHead(() => ({
-  title: data.value?.title,
+  title: data.value?.data?.title,
 }))
 </script>
 
@@ -43,10 +43,10 @@ useHead(() => ({
     </div>
     <div v-else class="p-5">
       <h1 class="text-2xl">
-        {{ data?.title }}
+        {{ data?.data?.title }}
       </h1>
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <div v-html="data?.content" />
+      <div v-html="data?.data?.content" />
       <n-input v-model:value="value" type="textarea" placeholder="留言" />
       <div>
         <n-button type="primary" @click="send">

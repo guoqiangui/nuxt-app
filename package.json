@@ -10,7 +10,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "seed": "prisma db seed"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.11.1",
@@ -35,10 +36,12 @@
     "@unocss/nuxt": "^66.3.2",
     "eslint": "^9.29.0",
     "prisma": "^6.11.1",
+    "tsx": "^4.20.3",
     "typescript": "^5.8.3",
     "unocss": "^66.3.2"
   },
   "prisma": {
-    "schema": "server/database/schema.prisma"
+    "schema": "server/database/schema.prisma",
+    "seed": "tsx server/database/seed.ts"
   }
 }

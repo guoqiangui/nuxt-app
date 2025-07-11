@@ -4,6 +4,7 @@ import process from 'node:process'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import remarkHtml from 'remark-html'
+import { createSuccessResponse } from '~/server/utils/response'
 
 export default defineEventHandler(async (e) => {
   const id = getRouterParam(e, 'id')
@@ -25,8 +26,8 @@ export default defineEventHandler(async (e) => {
   const matterInfo = matter(fileContent)
 
   const file = await remark().use(remarkHtml).process(matterInfo.content)
-  return {
+  return createSuccessResponse({
     title: matterInfo.data.title as string,
     content: file.toString(),
-  }
+  })
 })

@@ -1,55 +1,26 @@
 <script setup lang="ts">
 useHead({
-  title: '文章列表',
+  title: '首页',
 })
 
-const page = ref(1)
+const slides = [
+  { label: '1', bgColor: 'cadetblue' },
+  { label: '2', bgColor: 'cornflowerblue' },
+  { label: '3', bgColor: 'blueviolet' },
+  { label: '4', bgColor: 'brown' },
+]
 
-function prev() {
-  page.value--
-}
-
-function next() {
-  page.value++
-}
-
-const {
-  data: posts,
-  pending,
-  error,
-} = useFetch(() => `/api/posts?page=${page.value}&size=2`)
+const { data: indexData } = await useFetch('/api/index-data')
 </script>
 
 <template>
-  <div class="dark:bg-slate-400">
-    index page
-    <NuxtLink to="/detail/1" class="text-blue-500">
-      Detail
-    </NuxtLink>
-    <n-button type="primary">
-      Primary
-    </n-button>
-
-    <div v-if="pending">
-      加载中...
-    </div>
-    <div v-else-if="error">
-      {{ error.message }}
-    </div>
-    <div v-else class="text-center">
-      <div v-for="item in posts" :key="item.id" class="mb-2.5">
-        <NuxtLink class="text-blue-500 text-2xl" :to="`/detail/${item.id}`">
-          {{ item.title }}
-        </NuxtLink>
-        <p>{{ item.date }}</p>
+  <div class="py-10">
+    <n-carousel autoplay class="mb-6">
+      <div v-for="item in slides" :key="item.label" class="h-[400px] rounded-2xl flex items-center justify-center" :style="{ backgroundColor: item.bgColor }">
+        {{ item.label }}
       </div>
-    </div>
-
-    <n-button size="small" @click="prev">
-      上一页
-    </n-button>
-    <n-button size="small" @click="next">
-      下一页
-    </n-button>
+    </n-carousel>
+    <ProdList :data="indexData?.data.courses" title="课程" />
+    <ProdList :data="indexData?.data.columns" title="专栏" />
   </div>
 </template>

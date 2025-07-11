@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import matter from 'gray-matter'
+import { createSuccessResponse } from '~/server/utils/response'
 
 export default defineEventHandler(async (e) => {
   const dir = path.join(process.cwd(), 'contents')
@@ -42,5 +43,5 @@ export default defineEventHandler(async (e) => {
   const startIndex = (page - 1) * size
   const endIndex = startIndex + size
 
-  return posts.slice(startIndex, endIndex)
+  return createSuccessResponse(posts.slice(startIndex, endIndex))
 })

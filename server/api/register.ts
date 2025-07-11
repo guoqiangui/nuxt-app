@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import { createUser, getUserByUsername } from '~/server/database/repositories/userRepository'
 import { generateToken } from '~/server/utils/auth'
 import { createConflictError, createValidationError } from '~/server/utils/error'
+import { createSuccessResponse } from '~/server/utils/response'
 
 export default defineEventHandler(async (e) => {
   const { username, password } = await readBody(e)
@@ -21,5 +22,5 @@ export default defineEventHandler(async (e) => {
 
   const token = generateToken(user)
 
-  return { ok: true, data: { userInfo: user, token } }
+  return createSuccessResponse({ userInfo: user, token }, '注册成功')
 })
