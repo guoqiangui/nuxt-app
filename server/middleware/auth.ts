@@ -4,9 +4,6 @@ export default defineEventHandler((e) => {
   const token = getHeader(e, 'token')
 
   if (protectedRoutes.some(route => e.path.startsWith(route)) && !token) {
-    sendError(
-      e,
-      createError({ statusCode: 401, statusMessage: 'Hey! Unauthorized!!!' }),
-    )
+    return createError({ status: 401, message: 'Hey! Unauthorized!!!' })
   }
 })

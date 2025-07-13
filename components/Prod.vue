@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Column, Course } from '~/server/database/generated/prisma/client'
+import type { ColumnResponse, CourseResponse } from '~/types/api'
 
 defineProps<{
-  data: Course | Column
+  data: CourseResponse | ColumnResponse
   type: 'course' | 'column'
 }>()
 </script>

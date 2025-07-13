@@ -8,12 +8,12 @@ export default defineEventHandler(async (e) => {
   const { username, password } = await readBody(e)
 
   if (!username || !password) {
-    return sendError(e, createValidationError())
+    return createValidationError()
   }
 
   let user = await getUserByUsername(username)
   if (user) {
-    return sendError(e, createConflictError())
+    return createConflictError()
   }
 
   const hash = await bcrypt.hash(password, 10)

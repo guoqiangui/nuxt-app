@@ -8,18 +8,18 @@ export default defineEventHandler(async (e) => {
   const { username, password } = await readBody(e)
 
   if (!username || !password) {
-    return sendError(e, createValidationError())
+    return createValidationError()
   }
 
   const user = await getUserByUsername(username)
 
   if (!user) {
-    return sendError(e, createAuthError())
+    return createAuthError()
   }
 
   const isValid = await bcrypt.compare(password, user.password)
   if (!isValid) {
-    return sendError(e, createAuthError())
+    return createAuthError()
   }
 
   const token = generateToken(user)
