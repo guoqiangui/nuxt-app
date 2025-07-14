@@ -20,7 +20,7 @@ const { data: indexData } = await useFetch('/api/index-data')
         {{ item.label }}
       </div>
     </n-carousel>
-    <ProdList :data="indexData?.data.courses" title="课程" />
-    <ProdList :data="indexData?.data.columns" title="专栏" />
+    <ProdList :data="indexData?.data?.courses" title="课程" />
+    <ProdList :data="indexData?.data?.columns" title="专栏" type="column" />
   </div>
 </template>

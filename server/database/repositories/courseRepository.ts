@@ -12,3 +12,7 @@ export async function getCourses(page: number, size: number) {
 
   return { list, total }
 }
+
+export async function getCourseById(id: number) {
+  return await prisma.course.findUnique({ where: { id }, include: { Catalogue: true } })
+}

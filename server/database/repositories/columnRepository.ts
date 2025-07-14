@@ -12,3 +12,7 @@ export async function getColumns(page: number, size: number) {
 
   return { list, total }
 }
+
+export async function getColumnById(id: number) {
+  return await prisma.column.findUnique({ where: { id } })
+}

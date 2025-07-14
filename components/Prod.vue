@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import type { ColumnResponse, CourseResponse } from '~/types/api'
 
-defineProps<{
+const props = defineProps<{
   data: CourseResponse | ColumnResponse
   type: 'course' | 'column'
 }>()
+
+function handleClick() {
+  navigateTo(`/${props.type}/detail/${props.data.id}`)
+}
 </script>
 
 <template>
-  <n-card>
+  <n-card @click="handleClick">
     <template #header>
       <div class="truncate">
         {{ data.title }}

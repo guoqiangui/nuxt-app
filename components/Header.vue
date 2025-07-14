@@ -5,15 +5,13 @@ import { useUser } from '~/store/user'
 const config = useAppConfig()
 
 const menus: MenuOption[] = [
-  { label: '首页' },
-  { label: '专栏' },
-  { label: '课程' },
+  { label: '首页', url: '/' },
+  { label: '专栏', url: '/list/column' },
+  { label: '课程', url: '/list/course' },
 ]
 menus.forEach(item => (item.key = item.label as string))
 
 const menuOptions = ref(menus)
-
-const activeKey = ref(null)
 
 const store = useUser()
 const { userInfo } = storeToRefs(store)
@@ -46,9 +44,9 @@ function handleSelect(key: string) {
         羊村学堂
       </n-button>
       <n-menu
-        v-model:value="activeKey"
         mode="horizontal"
         :options="menuOptions"
+        :on-update:value="(key, item) => navigateTo(item.url as string)"
       />
     </div>
 
