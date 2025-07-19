@@ -1,6 +1,5 @@
-import bcrypt from 'bcrypt'
 import { createUser, getUserByUsername } from '~/server/database/repositories/userRepository'
-import { generateToken } from '~/server/utils/auth'
+import { generateToken, hashPassword } from '~/server/utils/auth'
 import { createConflictError, createValidationError } from '~/server/utils/error'
 import { createSuccessResponse } from '~/server/utils/response'
 
@@ -16,7 +15,7 @@ export default defineEventHandler(async (e) => {
     return createConflictError()
   }
 
-  const hash = await bcrypt.hash(password, 10)
+  const hash = await hashPassword(password)
 
   user = await createUser({ username, password: hash })
 

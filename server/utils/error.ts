@@ -9,3 +9,7 @@ export function createValidationError(message = '缺少参数') {
 export function createConflictError(message = '用户名已存在') {
   return createError({ status: 409, message })
 }
+
+export function createNotFoundError(message = '资源不存在') {
+  return createError({ status: 404, message })
+}

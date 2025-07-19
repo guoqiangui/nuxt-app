@@ -19,3 +19,17 @@ export async function updateOrder({ id, status }: Order) {
     data: { status },
   })
 }
+
+export async function getCoursesByUser(userId: number) {
+  const orders = await prisma.order.findMany({ where: { userId }, include: { course: true } })
+
+  const courses = orders.map(item => item.course)
+  // 根据课程id去重
+  const uniqueCoursesMap = new Map()
+  for (const course of courses) {
+    if (course && !uniqueCoursesMap.has(course.id)) {
+      uniqueCoursesMap.set(course.id, course)
+    }
+  }
+  return Array.from(uniqueCoursesMap.values())
+}

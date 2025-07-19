@@ -1,6 +1,5 @@
-import bcrypt from 'bcrypt'
 import { getUserByUsername } from '~/server/database/repositories/userRepository'
-import { generateToken } from '~/server/utils/auth'
+import { generateToken, verifyPassword } from '~/server/utils/auth'
 import { createAuthError, createValidationError } from '~/server/utils/error'
 import { createSuccessResponse } from '~/server/utils/response'
 
@@ -17,7 +16,7 @@ export default defineEventHandler(async (e) => {
     return createAuthError()
   }
 
-  const isValid = await bcrypt.compare(password, user.password)
+  const isValid = await verifyPassword(password, user.password)
   if (!isValid) {
     return createAuthError()
   }
