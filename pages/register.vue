@@ -39,7 +39,8 @@ async function handleRegister() {
     return
   }
 
-  const res = await $fetch<{ ok: boolean, data: unknown }>('/api/register', { method: 'post', body: model.value })
+  const { $api } = useNuxtApp()
+  const res = await $api<{ ok: boolean, data: unknown }>('/api/register', { method: 'post', body: model.value })
   handleAuthResponse(res, '注册成功')
 }
 </script>

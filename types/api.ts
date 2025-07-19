@@ -1,6 +1,6 @@
 import type { Serialize } from 'nitropack/types'
 // API 响应类型定义
-import type { Catalogue, Column, Course } from '~/server/database/generated/prisma/client'
+import type { Catalogue, Column, Course, Order } from '~/server/database/generated/prisma/client'
 
 // 通用的 API 响应包装类型
 export interface ApiResponse<T> {
@@ -21,3 +21,5 @@ export type CourseResponse = Serialize<Course>
 export type ColumnResponse = Serialize<Column>
 
 export type CourseWithCatalogueResponse = Serialize<Course & { Catalogue: Catalogue[] }>
+
+export type OrderWithCourseResponse = Serialize<Order & { course: Course }>

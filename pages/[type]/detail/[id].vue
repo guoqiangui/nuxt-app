@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Order } from '~/server/database/generated/prisma/client'
 import type { ApiResponse, ColumnResponse, CourseWithCatalogueResponse } from '~/types/api'
 
 definePageMeta({
@@ -21,6 +22,17 @@ const isCourse = computed(() => route.params.type === 'course')
 const course = computed(() => isCourse.value ? itemData.value as CourseWithCatalogueResponse : undefined)
 
 const type = computed(() => route.params.type as 'course' | 'column')
+
+async function handleBuy() {
+  const { $api } = useNuxtApp()
+
+  const data = await $api<ApiResponse<Order>>('/api/order', {
+    method: 'POST',
+    body: { courseId: itemData.value?.id },
+  })
+
+  navigateTo(`/order-detail/${data.data.id}`)
+}
 </script>
 
 <template>
@@ -41,12 +53,12 @@ const type = computed(() => route.params.type as 'course' | 'column')
               style="color: var(--primary-color);"
               class="text-xl mr-2"
             >
-              ￥{{ course?.price }}
+              🌱{{ course?.price }}
             </n-el>
-            <span class="text-sm text-gray-500 line-through">￥{{ course?.oPrice }}</span>
+            <span class="text-sm text-gray-500 line-through">🌱{{ course?.oPrice }}</span>
           </div>
         </div>
-        <n-button type="primary">
+        <n-button v-if="isCourse" type="primary" @click="handleBuy">
           快到碗里来
         </n-button>
       </div>

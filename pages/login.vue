@@ -32,7 +32,8 @@ async function handleLogin() {
     return
   }
 
-  const res = await $fetch<{ ok: boolean, data: unknown }>('/api/login', { method: 'post', body: model.value })
+  const { $api } = useNuxtApp()
+  const res = await $api<{ ok: boolean, data: unknown }>('/api/login', { method: 'post', body: model.value })
   handleAuthResponse(res, '登录成功')
 }
 </script>
