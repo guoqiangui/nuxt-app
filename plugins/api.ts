@@ -3,7 +3,7 @@ import { createDiscreteApi } from 'naive-ui'
 export default defineNuxtPlugin((nuxtApp) => {
   const api = $fetch.create({
     onRequest({ options }) {
-      const token = localStorage.getItem('token')
+      const token = getToken()
       if (token) {
         options.headers.set('token', token)
       }

@@ -10,7 +10,7 @@ function useAuthHandler() {
     if (res.ok) {
       message.success(successMessage)
       userInfo.value = res.data.userInfo
-      localStorage.setItem('token', res.data.token)
+      setToken(res.data.token)
       navigateTo('/')
     }
   }

@@ -29,17 +29,12 @@ function handleUpdate(key: string) {
 
 <template>
   <div class="py-4">
-    <n-grid x-gap="12">
-      <n-grid-item :span="5">
-        <n-menu
-          class="bg-white"
-          :options="menuOptions"
-          :on-update:value="handleUpdate"
-        />
-      </n-grid-item>
-      <n-grid-item :span="19">
-        <NuxtPage />
-      </n-grid-item>
-    </n-grid>
+    <n-menu
+      class="bg-white"
+      mode="horizontal"
+      :options="menuOptions"
+      :on-update:value="handleUpdate"
+    />
+    <NuxtPage />
   </div>
 </template>

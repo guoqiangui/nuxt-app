@@ -19,7 +19,7 @@ function handleClick() {
       </div>
     </template>
     <template #cover>
-      <img :src="data.cover">
+      <img :src="data.cover" class="h-40 object-cover">
     </template>
     <div>
       <p>{{ data.desc }}</p>

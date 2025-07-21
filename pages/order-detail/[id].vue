@@ -33,8 +33,8 @@ async function handleConfirmOrder() {
     <h2 class="text-xl mb-4 text-gray-500">
       产品信息
     </h2>
-    <div class="flex gap-4 mb-4">
-      <img class="w-100 h-60 object-cover" :src="order.course.cover" alt="">
+    <div class="flex flex-col md:flex-row gap-4 mb-4">
+      <img class="w-full md:w-100 h-60 object-cover" :src="order.course.cover" alt="">
       <div>
         <h3 class="text-2xl font-bold mb-4">
           {{ order.course.title }}

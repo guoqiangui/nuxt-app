@@ -13,8 +13,8 @@ onMounted(async () => {
 <template>
   <div class="bg-white p-4">
     <n-card v-for="course in courses" :key="course.id" class="mb-4">
-      <div class="flex gap-4 items-center">
-        <img class="w-80 h-45" :src="course.cover" alt="course">
+      <div class="flex flex-col md:flex-row gap-4 md:items-center">
+        <img class="w-full md:w-80 h-45 object-cover" :src="course.cover" alt="course">
         <div>
           <h3 class="text-lg font-bold">
             {{ course.title }}

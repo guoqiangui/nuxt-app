@@ -6,7 +6,7 @@ const page = ref(1)
 const size = ref(10)
 const total = ref(0)
 
-const { data } = await useFetch(() => `/api/${type}?page=${page.value}&size=${size.value}`)
+const { data, pending } = useFetch(() => `/api/${type}?page=${page.value}&size=${size.value}`)
 
 watch(data, (newVal) => {
   if (newVal?.data?.total) {
@@ -16,15 +16,21 @@ watch(data, (newVal) => {
 </script>
 
 <template>
-  <div class="py-5">
-    <n-grid v-if="data?.data?.list" class="mb-5" x-gap="12" :cols="4">
-      <n-gi v-for="item in data.data.list" :key="item.id">
-        <Prod :type="type" :data="item" />
-      </n-gi>
-    </n-grid>
+  <Loading :pending="pending">
+    <template #loading>
+      <LoadingCourseSkeleton />
+    </template>
 
-    <div class="flex justify-center">
-      <n-pagination v-model:page="page" :item-count="total" />
+    <div class="py-5">
+      <n-grid v-if="data?.data?.list" class="mb-5" x-gap="12" cols="1 s:2 m:4" responsive="screen">
+        <n-gi v-for="item in data.data.list" :key="item.id">
+          <Prod :type="type" :data="item" />
+        </n-gi>
+      </n-grid>
+
+      <div class="flex justify-center">
+        <n-pagination v-model:page="page" :item-count="total" />
+      </div>
     </div>
-  </div>
+  </Loading>
 </template>

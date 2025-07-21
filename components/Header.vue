@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import type { MenuOption } from 'naive-ui'
+import type { User } from '~/server/database/generated/prisma/client'
+import type { ApiResponse } from '~/types/api'
+import { DarkModeFilled, LightModeFilled, MenuFilled } from '@vicons/material'
 import { useUser } from '~/store/user'
 
 const config = useAppConfig()
@@ -35,6 +38,23 @@ function handleSelect(key: string) {
     store.logout()
   }
 }
+
+const showMobileMenu = ref(false)
+
+function handleMobileMenuSelect(key: string, item: MenuOption) {
+  navigateTo(item.url as string)
+  showMobileMenu.value = false
+}
+
+onMounted(async () => {
+  if (getToken()) {
+    const { $api } = useNuxtApp()
+    const res = await $api<ApiResponse<User>>('/api/user-info')
+    if (res.ok) {
+      store.userInfo = res.data
+    }
+  }
+})
 </script>
 
 <template>
@@ -43,11 +63,16 @@ function handleSelect(key: string) {
       <n-button class="text-xl mr-1" text strong>
         羊村学堂
       </n-button>
-      <n-menu
-        mode="horizontal"
-        :options="menuOptions"
-        :on-update:value="(key, item) => navigateTo(item.url as string)"
-      />
+      <div class="hidden md:block">
+        <n-menu
+          mode="horizontal"
+          :options="menuOptions"
+          :on-update:value="(key, item) => navigateTo(item.url as string)"
+        />
+      </div>
+      <n-button class="md:hidden" @click="showMobileMenu = true">
+        <n-icon :component="MenuFilled" size="18" />
+      </n-button>
     </div>
 
     <div class="flex items-center">
@@ -61,7 +86,21 @@ function handleSelect(key: string) {
           <div class="w-12 h-12 rounded-full bg-amber-700" />
         </n-dropdown>
       </div>
-      启用暗黑模式：<n-switch v-model:value="config.theme.dark" />
+      <n-switch v-model:value="config.theme.dark">
+        <template #checked-icon>
+          <n-icon :component="DarkModeFilled" />
+        </template>
+        <template #unchecked-icon>
+          <n-icon :component="LightModeFilled" />
+        </template>
+      </n-switch>
     </div>
   </div>
+  <n-drawer v-model:show="showMobileMenu" placement="left">
+    <n-menu
+      mode="vertical"
+      :options="menuOptions"
+      :on-update:value="handleMobileMenuSelect"
+    />
+  </n-drawer>
 </template>

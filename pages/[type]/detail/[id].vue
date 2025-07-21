@@ -37,8 +37,8 @@ async function handleBuy() {
 
 <template>
   <div v-if="data">
-    <div class="bg-white rounded p-4 mt-4 flex gap-4">
-      <img class="w-100 h-60 rounded object-cover" :src="itemData?.cover" alt="">
+    <div class="bg-white rounded p-4 mt-4 flex flex-col md:flex-row gap-4">
+      <img class="w-full md:w-100 h-60 rounded object-cover" :src="itemData?.cover" alt="">
       <div class="flex flex-col justify-between items-start">
         <div>
           <h2 class="text-2xl font-bold">
@@ -64,8 +64,8 @@ async function handleBuy() {
       </div>
     </div>
 
-    <n-grid class="mt-4" x-gap="12">
-      <n-gi :span="18" class="bg-white rounded p-4">
+    <n-grid class="mt-4" x-gap="12" item-responsive responsive="screen">
+      <n-gi span="24 m:18" class="bg-white rounded p-4">
         <n-tabs type="line" animated>
           <n-tab-pane name="oasis" tab="详情">
             {{ itemData?.desc }}
@@ -82,7 +82,7 @@ async function handleBuy() {
           </n-tab-pane>
         </n-tabs>
       </n-gi>
-      <n-gi :span="6" class="bg-white rounded p-4">
+      <n-gi span="24 m:6" class="bg-white rounded p-4">
         <h2 class="text-lg font-bold pb-2">
           精品推荐
         </h2>

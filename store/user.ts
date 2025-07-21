@@ -5,7 +5,7 @@ export const useUser = defineStore('user', () => {
 
   function logout() {
     userInfo.value = null
-    localStorage.removeItem('token')
+    removeToken()
   }
 
   return { userInfo, logout }
