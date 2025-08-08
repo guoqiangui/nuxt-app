@@ -17,4 +17,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     JWT_SECRET: 'e_sPI~PwUn+soYI(2QrLI@0HI+9OHUKf',
   },
+  nitro: {
+    replace: {
+      // 临时解决打包后preview时的Identifier 'process' has already been declared
+      // 详见：https://github.com/prisma/prisma/issues/26908
+      'import * as process': 'import * as processUnused',
+    },
+  },
 })
