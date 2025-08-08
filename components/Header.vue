@@ -2,7 +2,12 @@
 import type { MenuOption } from 'naive-ui'
 import type { User } from '~/server/database/generated/prisma/client'
 import type { ApiResponse } from '~/types/api'
-import { DarkModeFilled, LightModeFilled, MenuFilled } from '@vicons/material'
+// 这样写会打开所有的图标文件，导致报too many open files，详见：https://github.com/vitest-dev/vitest/issues/3576
+// 或者：https://github.com/07akioni/xicons?tab=readme-ov-file#common-issues
+// import { DarkModeFilled, LightModeFilled, MenuFilled } from '@vicons/material'
+import DarkModeFilled from '@vicons/material/DarkModeFilled'
+import LightModeFilled from '@vicons/material/LightModeFilled'
+import MenuFilled from '@vicons/material/MenuFilled'
 import { useUser } from '~/store/user'
 
 const config = useAppConfig()
