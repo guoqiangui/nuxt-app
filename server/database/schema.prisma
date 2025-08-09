@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:123456@localhost:3306/ycxt"
+  url      = "mysql://root:123456@mysql_db_container:3306/ycxt"
 }
 
 model Column {

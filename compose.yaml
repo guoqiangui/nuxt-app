@@ -7,6 +7,21 @@ services:
       - 3306:3306
     volumes:
       - mysql_db_data_container:/var/lib/mysql
+    healthcheck:
+      test: [CMD, mysqladmin, ping, -h, localhost]
+      timeout: 20s
+      retries: 10
+      start_period: 30s
+
+  app_container:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      mysql_db_container:
+        condition: service_healthy
 
 volumes:
   mysql_db_data_container:
