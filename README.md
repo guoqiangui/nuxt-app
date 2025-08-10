@@ -1,8 +1,28 @@
 # Nuxt Minimal Starter
 
-阅读《[Nuxt 3.0 全栈开发](https://juejin.cn/video/7202149403342143520)》小册所写代码
-
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+
+## 说明
+
+阅读《[Nuxt 3.0 全栈开发](https://juejin.cn/video/7202149403342143520)》小册所写代码，不完全按照教程编写，融入了自己的想法
+
+技术栈：Nuxt3 + Naive UI + UnoCSS + Prisma + MySQL + Docker
+
+代码规范：@antfu/eslint-config + husky + lint-staged + commitlint
+
+开发环境和生产环境都可以使用docker来启动和打包，不需要本地安装MySQL，比较方便。
+
+开发环境容器启动后，如果本地代码无类型提示，需要先安装node_modules依赖。
+
+### 开发环境
+```bash
+docker compose -f compose.yaml -f compose.dev.yaml watch
+```
+
+### 生产环境
+```bash
+docker compose -f compose.yaml -f compose.prod.yaml up -d
+```
 
 ## Setup
 
